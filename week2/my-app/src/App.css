@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+
+
+
+html {
+  font-family: sans-serif;
+  color: rgb(6, 8, 8);
+  background-image: url('https://img.freepik.com/free-vector/travel-tourism-illustration-with-resort-sightseeing-elements_1284-30189.jpg?size=626&ext=jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
