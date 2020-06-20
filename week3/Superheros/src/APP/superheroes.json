@@ -1,17 +1,50 @@
 [
     {
-        "name": "Superman",
-        "catchphrase": "Up up and away!",
-        "imgUrl": "https://vignette.wikia.nocookie.net/superman/images/2/27/Superman-dcuo.jpg/revision/latest?cb=20110901025125"
+        "name": "Skeletor",
+        "show": "Masters of the Universe",
+        "catchphrase": "Listen, I am not nice, I am not kind and I NOT WONDERFUL!",
+        "imgUrl": "https://static3.srcdn.com/wordpress/wp-content/uploads/2018/06/skeletor.jpg"
     },
     {
-        "name": "Batman",
-        "catchphrase": "I'm Batman!",
-        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/Batman-BenAffleck.jpg"
+        "name": "Maya",
+        "show": "Maya the Bee",
+        "catchphrase": "It certainly is a great day to be alive",
+        "imgUrl": "https://i.ytimg.com/vi/1zVDADNYwRs/maxresdefault.jpg"
     },
     {
-        "name": "Captain America",
-        "catchphrase": "Avengers assemble!",
-        "imgUrl": "http://www.screengeek.net/wp-content/uploads/2017/10/captain-america-chris-evans.jpg"
+        "name": "Vickie",
+        "show": "Vickie the Viking",
+        "catchphrase": "Ah-HA",
+        "imgUrl": "https://nostalgiacentral.com/wp-content/uploads/2015/12/vickyviking8.jpg"
+    },
+    {
+        "name": "Borrie Veldt",
+        "show": "Die SWart Katg",
+        "catchphrase": "Die Swart Kat Slaan Toe",
+        "imgUrl": "https://cdn.24.co.za/files/Cms/General/d/1174/8a8ae9c6962945288123e8eb14e6a52f.jpg"
+    },
+    {
+        "name": "TinTin",
+        "show": "The Calculus Affair",
+        "catchphrase": "They're trying to stop us with that ramshackle erection!",
+        "imgUrl": "https://www.setantabooks.com/wp-content/uploads/2013/09/1156_0.jpg"
+    },
+    {
+        "name": "Obelix",
+        "show": "Asterix and Ovelix",
+        "catchphrase": "lis sont fous ces romaines!",
+        "imgUrl": "https://images.indulgexpress.com/uploads/user/ckeditor_images/article/2019/4/4/unnamed.jpg"
+    },
+    {
+        "name": "Levinia",
+        "show": "Liewe Heksie",
+        "catchphrase": "O Griet!",
+        "imgUrl": "https://i.pinimg.com/originals/39/37/53/393753e0ad00e6c9e9edbdef2e2125d8.jpg"
+    },
+    {
+        "name": "Zummi",
+        "show": "Gummy Bears",
+        "catchphrase": "As you all know, the Great Book of Gummi will never be finished",
+        "imgUrl": "https://vignette.wikia.nocookie.net/p__/images/7/76/Zummi.png/revision/latest?cb=20170128010813&path-prefix=protagonist"
     }
 ]
