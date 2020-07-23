@@ -1,92 +1,104 @@
-import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { ListItem, Left, Body, Thumbnail } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
+import React, { Component } from 'react';
+import TweetsList from '../TweetsList/TweetsList';
+import './tweet-post.css';
+import TweetItem from "../FeedItemFeedItem";
 
-const styles = StyleSheet.create({
-  leftContainer: {
-    alignSelf: 'flex-start',
-    paddingTop: 15,
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  userName: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  subInfo: {
-    marginLeft: 5,
-    fontSize: 14,
-    color: 'rgb(101, 119, 134)',
-  },
-  mainArea: {
-    marginRight: 15,
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    justfyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  touchableIconAndNumber: {
-    flex: 1,
-  },
-  icon: {
-    fontSize: 20,
-    color: 'rgb(101, 119, 134)',
-  },
-  countNumber: {
-    marginLeft: 10,
-    color: 'rgb(101, 119, 134)',
-  },
-  icons: {
-    flex: 1,
-    marginTop: 10,
-    flexDirection: 'row',
-    justfyContent: 'space-between',
-  },
-});
+class TweetPost extends Component {
+    constructor() {
+        super()
+        this.state = {
+            userName: "",
+            tag: "",
+            textArea: "",
+            tweets: []
+        }
+    }
 
-const TweetItem = ({ tweet, onPress }) => (
-  <ListItem avatar button onPress={onPress}>
-    <Left style={styles.leftContainer}>
-      <Thumbnail small source={{ uri: tweet.userAvatorImageUrl }} />
-    </Left>
-    <Body style={styles.mainArea}>
-      <View style={styles.container}>
-        <Text style={styles.userName}>{tweet.userName}</Text>
-        <Text style={styles.subInfo}>@{tweet.userId}</Text>
-        <Text style={styles.subInfo}>{tweet.contributedTime}</Text>
-      </View>
-      <Text>{tweet.sentences}</Text>
-      <View style={styles.icons}>
-        <TouchableOpacity style={styles.touchableIconAndNumber}>
-          <View style={styles.iconContainer}>
-            <FontAwesome name="comment-o" style={styles.icon} />
-            <Text style={styles.countNumber}>{tweet.replyCount}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.touchableIconAndNumber}>
-          <View style={styles.iconContainer}>
-            <FontAwesome name="retweet" style={styles.icon} />
-            <Text style={styles.countNumber}>{tweet.retweetCount}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.touchableIconAndNumber}>
-          <View style={styles.iconContainer}>
-            <FontAwesome name="heart-o" style={styles.icon} />
-            <Text style={styles.countNumber}>{tweet.favoriteCount}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.touchableIconAndNumber}>
-          <View style={styles.iconContainer}>
-            <FontAwesome name="share-alt" style={styles.icon} />
-          </View>
-        </TouchableOpacity>
-      </View>
-    </Body>
-  </ListItem>
-);
+    handleChange = (e) => {
+        const { name, value } = e.target
+        this.setState({ [name] : value})
+    }
+
+    handleDelete = (i) => {
+        let removeTweet = this.state.tweets
+        removeTweet.splice(i, 1)
+        this.setState( { tweets: removeTweet })
+    }
+
+    handleEdit = (i, changes) => {
+        this.setState(prevState => {
+        let editedTweets = prevState.tweets
+        const index = editedTweets.findIndex(tweet => tweet.id === i)
+        const updatedTweet = Object.assign(editedTweets[index], changes)
+        return ({ updatedTweet })})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        let newTweet = {
+            userName: this.state.userName,
+            tag: this.state.tag,
+            textArea: this.state.textArea
+        }
+        this.setState({ 
+            tweets : [ newTweet, ...this.state.tweets ], 
+            userName: "",
+            tag: "",
+            textArea: ""
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <form className="post-wrapper" id="tweetArea" onSubmit={this.handleSubmit}>
+                    <input
+                        className="user-name"
+                        type="text"
+                        name="userName"
+                        value={this.state.userName} 
+                        placeholder="UserName" 
+                        onChange={this.handleChange}
+                        minLength="3"
+                        required={true}
+                    />
+                    <input
+                        className="tag-name"
+                        type="text"
+                        name="tag"
+                        value={this.state.tag} 
+                        placeholder="@TagName" 
+                        onChange={this.handleChange}
+                        minLength="3"
+                        required={true}
+                    />
+                    <button className="tweet-button">Tweet</button>
+                    <div className="text-area">
+                        <textarea
+                            className="text-box"
+                            form="tweetArea"
+                            name="textArea"
+                            placeholder="What's Happening?"
+                            value={this.state.textArea}
+                            rows="8"
+                            cols="62"
+                            onChange={this.handleChange}
+                            minLength="3"
+                            required={true}
+                        />
+                    </div>
+                </form>
+                <TweetItem
+                    tweets={this.state.tweets}
+                    handleEdit={(i, edits) => {
+                        this.handleEdit(i, edits)}}
+                    handleDelete={this.handleDelete}  
+                />
+                <FeedList />
+            </div>
+        );
+    }
+}
+
 
 export default TweetItem;

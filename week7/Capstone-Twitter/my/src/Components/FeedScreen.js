@@ -1,41 +1,23 @@
 import React from 'react';
+import feedData from './feedData.json';
+import Feed from "./Feed";
 
-import { Container } from 'native-base';
-import '@expo/vector-icons';
-import { NavigationActions } from 'react-navigation';
-import TweetsList from './TweetsList';
-import { connect } from 'react-redux';
-import {
-  filterTweetAction,
-  fetchMoreTweetsAction,
-} from '../Actions/actionCreator';
+class FeedList extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            feed: feedData
+        }
+    }
+    
+    render () {
+        const feedScreen = this.state.feed.map(item => <Feed key={item.id} item={item}/>)
+        return (
+            <div>
+            {feedScreen}
+            </div>
+        )
+    }
+}
 
-const FeedScreen = ({ tweets, navToProfile, fetchTweets }) => (
-  <Container style={{backgroundColor: "#FFF"}}>
-    <TweetsList
-      tweets={[...tweets]}
-      navToProfile={navToProfile}
-      fetchTweets={fetchTweets}
-    />
-  </Container>
-);
-
-const mapStateToProps = state => ({
-  tweets: state.TweetReducer.tweets,
-});
-
-const mapDispatchToProps = dispatch => ({
-  navToProfile: userId => {
-    dispatch(filterTweetAction(userId));
-    dispatch(
-      NavigationActions.navigate({
-        routeName: 'profile',
-      })
-    );
-  },
-  fetchTweets: () => {
-    dispatch(fetchMoreTweetsAction());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen);
+export default FeedScreen;
